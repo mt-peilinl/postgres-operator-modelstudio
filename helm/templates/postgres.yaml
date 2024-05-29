@@ -2,6 +2,10 @@ apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
   name: {{ default .Release.Name .Values.name }}
+  {{- if .Values.weight_annotations }}
+  annotations:
+    helm.sh/hook: {{ default "pre-install" .Values.annotation.hook }}
+    helm.sh/hook-weight: {{ default 1 .Values.annotation.hookWeight }}
 spec:
   postgresVersion: {{ required "You must set the version of Postgres to deploy." .Values.postgresVersion }}
   {{- if .Values.postGISVersion }}
