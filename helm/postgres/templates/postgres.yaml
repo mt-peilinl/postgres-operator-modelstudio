@@ -41,6 +41,10 @@ spec:
       {{- if .Values.imagePgBackRest }}
       image: {{ .Values.imagePgBackRest | quote }}
       {{- end }}
+      {{- if .Values.manual }}
+      manual:
+      {{ toYaml .Values.manual | indent 8 }}
+      {{- end}}
       {{- if .Values.pgBackRestConfig }}
 {{ toYaml .Values.pgBackRestConfig | indent 6 }}
       {{- else if .Values.multiBackupRepos }}
@@ -95,6 +99,9 @@ spec:
           bucket: {{ .Values.s3.bucket | quote }}
           endpoint: {{ .Values.s3.endpoint | quote }}
           region: {{ .Values.s3.region | quote }}
+        schedules:
+          differential: {{ .Values.schedules.differential | quote }}
+          full: {{ .Values.schedules.full | quote }}
       {{- else if .Values.gcs }}
       configuration:
       - secret:

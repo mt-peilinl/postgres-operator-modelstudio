@@ -2,37 +2,39 @@
 # controllerImages are used to run the operator's controllers.
 # The cluster image defined below runs the PostgresCluster and PGUpgrade controllers.
 controllerImages:
-  cluster: registry.developers.crunchydata.com/crunchydata/postgres-operator:ubi8-5.5.2-0
+  cluster: core.harbor.zlidc.mthreads.com:30003/crunchydata/postgres-operator:ubi8-5.3.2-0
 
 # relatedImages are used when an image is omitted from PostgresCluster, PGAdmin or PGUpgrade specs.
 relatedImages:
-  postgres_16:
-    image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-16.3-0
-  postgres_16_gis_3.4:
-    image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres-gis:ubi8-16.3-3.4-0
-  postgres_16_gis_3.3:
-    image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres-gis:ubi8-16.3-3.3-0
-  postgres_15:
-    image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-15.7-0
+  postgres_14:
+    image: core.harbor.zlidc.mthreads.com:30003/crunchydata/crunchy-postgres:ubi8-14.8-0
+  postgres_14_gis_3.1:
+    image: core.harbor.zlidc.mthreads.com:30003/crunchydata/crunchy-postgres-gis:ubi8-14.8-3.1-0
+  postgres_14_gis_3.2:
+    image: core.harbor.zlidc.mthreads.com:30003/crunchydata/crunchy-postgres-gis:ubi8-16.3-3.2-0
   postgres_15_gis_3.3:
-    image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres-gis:ubi8-15.7-3.3-0
+    image: core.harbor.zlidc.mthreads.com:30003/crunchydata/crunchy-postgres-gis:ubi8-15.7-3.3-0
+  postgres_15:
+    image: core.harbor.zlidc.mthreads.com:30003/crunchydata/crunchy-postgres:ubi8-15.3-0
+  postgres_15_gis_3.3:
+    image: core.harbor.zlidc.mthreads.com:30003/crunchydata/crunchy-postgres-gis:ubi8-15.3-3.3-0
   pgadmin:
-    image: registry.developers.crunchydata.com/crunchydata/crunchy-pgadmin4:ubi8-4.30-25
+    image: core.harbor.zlidc.mthreads.com:30003/crunchydata/crunchy-pgadmin4:ubi8-4.30-13
   pgbackrest:
-    image: registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.51-0
+    image: core.harbor.zlidc.mthreads.com:30003/crunchydata/crunchy-pgbackrest:ubi8-2.45-0
   pgbouncer:
-    image: registry.developers.crunchydata.com/crunchydata/crunchy-pgbouncer:ubi8-1.22-0
+    image: core.harbor.zlidc.mthreads.com:30003/crunchydata/crunchy-pgbouncer:ubi8-1.19-0
   pgexporter:
-    image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres-exporter:ubi8-0.15.0-6
+    image: core.harbor.zlidc.mthreads.com:30003/crunchydata/crunchy-postgres-exporter:ubi8-5.3.2-0
   pgupgrade:
-    image: registry.developers.crunchydata.com/crunchydata/crunchy-upgrade:ubi8-5.5.2-0
+    image: core.harbor.zlidc.mthreads.com:30003/crunchydata/crunchy-upgrade:ubi8-5.3.2-0
   standalone_pgadmin:
-    image: registry.developers.crunchydata.com/crunchydata/crunchy-pgadmin4:ubi8-8.6-0
+    image: core.harbor.zlidc.mthreads.com:30003/crunchydata/crunchy-pgadmin4:ubi8-8.6-0
 
 # singleNamespace controls where PGO watches for PostgresClusters. When false,
 # PGO watches for and responds to PostgresClusters in all namespaces. When true,
 # PGO watches only the namespace in which it is installed.
-singleNamespace: false
+singleNamespace: true
 
 # debug allows you to enable or disable the "debug" level of logging.
 debug: true
@@ -50,3 +52,5 @@ resources:
 # postgres-operator.crunchydata.com, will cause an error
 # customPodLabels:
 #  example.com: custom-label
+
+disable_check_for_upgrades: true
